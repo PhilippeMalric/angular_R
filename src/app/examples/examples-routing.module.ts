@@ -46,11 +46,6 @@ const routes: Routes = [
         component: QuestionnaireComponent,
         data: { title: 'Questionnaire' }
       },
-      {
-        path: 'tibble',
-        component: TibbleComponent,
-        data: { title: 'Tibble' }
-      },
     ]
   }
 ];

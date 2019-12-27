@@ -51,7 +51,6 @@ export class ExamplesComponent implements OnInit {
 
   examplesNonAdmin  = [
     { link: 'crud', label: 'Liste des items', auth: false,admin:false  },
-    { link: 'tibble', label: 'Tibble', auth: false,admin:false  },
     { link: 'users-info', label: 'Liste des utilisateurs', auth: false,admin:false  }
   ];
 

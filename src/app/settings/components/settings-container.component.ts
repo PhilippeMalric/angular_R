@@ -33,7 +33,7 @@ export class SettingsContainerComponent implements OnInit {
   themes = [
     { value: 'SPACE-THEME', label: 'space' },
     { value: 'NEW-THEME', label: 'new' },
-    { value: 'DEFAULT-THEME', label: 'blue' },
+    { value: 'DEFAULT-THEME', label: 'red' },
     { value: 'LIGHT-THEME', label: 'light' },
     { value: 'NATURE-THEME', label: 'nature' },
     { value: 'BLACK-THEME', label: 'dark' }

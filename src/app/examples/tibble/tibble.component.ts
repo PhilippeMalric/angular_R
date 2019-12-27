@@ -31,6 +31,7 @@ export interface HarmoRule{
 
 
 @Component({
+  selector: 'anms-tibble',
   templateUrl: './tibble.component.html',
   styleUrls: ['./tibble.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

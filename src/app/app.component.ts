@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
   ];
   navigationSideMenu = [
     ...this.navigation,
-    { link: 'noid/settings', label: 'anms.menu.settings' }
+    { link: 'settings', label: 'anms.menu.settings' }
   ];
   navigationSideMenu2 = [
     { link: 'noid/emailLogin', label: 'Authentification' },

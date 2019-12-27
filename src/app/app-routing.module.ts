@@ -50,11 +50,6 @@ const routes: Routes = [
       data: { title: 'statut-reglement' }
     },
     {
-      path: 'settings',
-      component: SettingsContainerComponent,
-      data: { title: 'anms.menu.settings' }
-    },
-    {
       path: 'emailLogin',
       component: SignInComponent,
       data: { title: 'signIn' }
@@ -81,6 +76,11 @@ const routes: Routes = [
     path: 'app',
     loadChildren: () => import('app/examples/examples.module').then(m => m.ExamplesModule),
     canActivate: [AuthGuardService],
+  },
+  {
+    path: 'settings',
+    component: SettingsContainerComponent,
+    data: { title: 'anms.menu.settings' }
   },
   {
     path: '**',

@@ -4,7 +4,7 @@
 
     <mat-sidenav #sidenav mode="push">
       <div class="branding"><img [src]="logo" />
-        <span data-testid="title">Exprimez-vous!</span></div>
+        <span data-testid="title">Data_frame_in_angular</span></div>
       <mat-nav-list>
         <a mat-list-item *ngFor="let item of navigation" (click)="sidenav.close()" [routerLink]="[item.link]"
           routerLinkActive="active">
@@ -31,8 +31,8 @@
           </button>
           <span routerLink="app" matRipple class="branding spacer center d-inline d-sm-none">
             <img [src]="logo" /></span>
-          <span routerLink="" class="branding spacer center d-none d-sm-inline d-md-none"><img [src]="logo" />Remettez-vous en question!</span>
-          <span routerLink="" class="branding spacer d-none d-md-inline"><img [src]="logo" />Votez, commentez et remettez-vous en question!</span>
+          <span routerLink="" class="branding spacer center d-none d-sm-inline d-md-none"><img [src]="logo" />Harmonisation</span>
+          <span routerLink="" class="branding spacer d-none d-md-inline"><img [src]="logo" />Validation de l'Harmonisation</span>
 
           <span class="d-none d-md-inline">
             <button mat-button class="nav-button" *ngFor="let item of navigation" [routerLink]="[item.link]"
@@ -97,31 +97,7 @@
       <div class="footer">
         <div class="row">
           <div class="col-sm-12 links">
-            <a href="https://www.github.com/philippemalric" target="_blank">
-              <fa-icon [icon]="['fab','github']"></fa-icon>
-              <span>Github</span>
-            </a>
-            <a href="https://www.medium.com/" target="_blank">
-              <fa-icon [icon]="['fab','medium-m']"></fa-icon>
-              <span>Medium</span>
-            </a>
-            <a href="https://www.twitter.com/" target="_blank">
-              <fa-icon [icon]="['fab','twitter']"></fa-icon>
-              <span>Twitter</span>
-            </a>
-            <a href="https://www.youtube.com/channel/"
-               target="_blank">
-              <fa-icon [icon]="['fab','youtube']"></fa-icon>
-              <span>Youtube</span>
-            </a>
-            <a href="https://www.instagram.com/" target="_blank">
-              <fa-icon [icon]="['fab','instagram']"></fa-icon>
-              <span>Instagram</span>
-            </a>
-            <a href="https://www.slides.com/" target="_blank">
-              <fa-icon icon="play-circle"></fa-icon>
-              <span>Slides</span>
-            </a>
+          Maelstrom
           </div>
         </div>
         <div class="row">
@@ -135,13 +111,12 @@
         </div>
         <div class="row">
           <div class="col-12 signature">
-            &#169; <span class="year" data-testid="footer-year">{{year}}</span> - Tomas Trajan - (adapté par Philippe Malric)
+            &#169; <span class="year" data-testid="footer-year">{{year}}</span>Adapté par Philippe Malric, venant de Tomas Trajan
             <br class="d-block d-sm-none">
             <h4 [matTooltip]="'anms.footer.changelog' | translate"
                matTooltipPosition="before"></h4>
             <fa-icon icon="rocket"></fa-icon>
             {{version}} <span *ngIf="!isProd">[{{envName}}]</span>
-
           </div>
         </div>
       </div>

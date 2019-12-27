@@ -41,19 +41,13 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { QuestionnaireEffects } from './questionnaire/questionnaire.effects';
-import { TibbleComponent } from './tibble/tibble.component';
-import { FileUploadServiceService } from './tibble/file-upload-service.service';
 
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableModule} from '@angular/material/table';
-import {MatChipsModule} from '@angular/material/chips';
+
 
 
 @NgModule({
   imports: [
-    MatChipsModule,
-    MatPaginatorModule,
-    MatTableModule,
+
     MatBottomSheetModule,
     ReactiveFormsModule,
     SharedModule,
@@ -88,8 +82,8 @@ import {MatChipsModule} from '@angular/material/chips';
     GearsComponent,
     UsersInfoComponent,
     DynamicFormComponent,
-    QuestionnaireComponent,
-    TibbleComponent
+    QuestionnaireComponent
+
   ],
   entryComponents: [BottomSheetComponent],
   providers: [JeuServiceService,QuestionControlService,QuestionService,],

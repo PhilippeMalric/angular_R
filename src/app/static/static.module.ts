@@ -15,11 +15,24 @@ import {MatListModule} from '@angular/material/list';
 
 import { StatutReglementComponent } from './statut-reglement/statut-reglement.component';
 import { ManifesteComponent } from './manifeste/manifeste.component';
+import { TibbleComponent } from '@app/examples/tibble/tibble.component';
+import { MatChipsModule } from '@angular/material';
 
 
 
 @NgModule({
-  imports: [SharedModule, StaticRoutingModule,MatTableModule,MatPaginatorModule,MatStepperModule,MatListModule],
-  declarations: [AboutComponent, FeaturesComponent, QuestionComponent, StatutReglementComponent, ManifesteComponent]
+  imports: [SharedModule,
+     StaticRoutingModule,
+     MatTableModule,
+     MatPaginatorModule,
+     MatStepperModule,
+     MatListModule,
+     MatChipsModule],
+  declarations: [AboutComponent,
+    FeaturesComponent,
+    QuestionComponent,
+    StatutReglementComponent,
+    ManifesteComponent,
+    TibbleComponent]
 })
 export class StaticModule {}
