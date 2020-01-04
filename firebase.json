@@ -1,6 +1,6 @@
 {
   "hosting": {
-  "public": "public",  // the only required attribute for hosting
+  "public": "public",
   "ignore": [
     "firebase.json",
     "**/.*",

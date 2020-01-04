@@ -15,13 +15,13 @@ export const environment = {
   i18nPrefix: '',
   firebaseConfig: {
     apiKey: apiKey,
-    authDomain: "constitution-quebec.firebaseapp.com",
-    databaseURL: "https://constitution-quebec.firebaseio.com",
-    projectId: "constitution-quebec",
-    storageBucket: "",
-    messagingSenderId: "525479138806",
-    appId: "1:525479138806:web:cc2f0d2d329a9ff48ce3d7",
-    measurementId: "G-030K8MEF4W"
+    authDomain: "angular-r-dad5f.firebaseapp.com",
+    databaseURL: "https://angular-r-dad5f.firebaseio.com",
+    projectId: "angular-r-dad5f",
+    storageBucket: "angular-r-dad5f.appspot.com",
+    messagingSenderId: "467839362596",
+    appId: "1:467839362596:web:806595d1d84f04973adab1",
+    measurementId: "G-R0SYTLQBYJ"
   },
   versions: {
     app: packageJson.version,

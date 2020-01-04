@@ -17,6 +17,17 @@ export class MyVariable {
   }
 }
 
+export class wordCount {
+
+  symbol:string;
+  count:number;
+  constructor(symbol,count){
+    this.symbol=symbol
+    this.count=count;
+  }
+}
+
+
 
 export interface HarmoRule{
   index:string;
@@ -24,9 +35,14 @@ export interface HarmoRule{
   Study_variable:string;
   Harmo_rule:string;
   DataSchema_variable:string;
+
+  dataSchema_variable_decompo:MyVariable[];
+
   variables:MyVariable[];
+
   harmoV:MyVariable[];
   harmoV2:MyVariable[];
+
 }
 
 
@@ -42,11 +58,28 @@ export class TibbleComponent implements OnInit {
   fileToUpload: File = null;
   tibble :HarmoRule[]
   dataSource : MatTableDataSource<HarmoRule>;
+  dataSource2 : MatTableDataSource<wordCount>;
+  dataSource3 : MatTableDataSource<wordCount>;
+  dataSource4 : MatTableDataSource<wordCount>;
   displayedColumns: string[] = ['position']
+  displayedColumns2: string[] = ['word','count']
   symbol_to_color = {}
   word_to_color = {}
 
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  stat_data_schema_v = {}
+  words_count_data_schema_v: wordCount[] = []
+
+  stat_study_variable = {}
+  words_count_ss_v: wordCount[] = []
+
+  stat_study_variable_in_HR = {}
+  words_count_hr_v: wordCount[] = []
+
+  @ViewChild('matPaginator1', {static: false}) paginator1: MatPaginator;
+  @ViewChild('matPaginator2', {static: false}) paginator2: MatPaginator;
+  @ViewChild('matPaginator3', {static: false}) paginator3: MatPaginator;
+  @ViewChild('matPaginator4', {static: false}) paginator4: MatPaginator;
+
   constructor(private fileUploadService:FileUploadService,private changeDetectorRef: ChangeDetectorRef,) { }
 
   ngOnInit() {
@@ -60,6 +93,30 @@ export class TibbleComponent implements OnInit {
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
+    }
+  }
+
+  applyFilter2(filterValue: string) {
+    this.dataSource2.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource2.paginator) {
+      this.dataSource2.paginator.firstPage();
+    }
+  }
+
+  applyFilter3(filterValue: string) {
+    this.dataSource3.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource3.paginator) {
+      this.dataSource3.paginator.firstPage();
+    }
+  }
+
+  applyFilter4(filterValue: string) {
+    this.dataSource4.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource4.paginator) {
+      this.dataSource4.paginator.firstPage();
     }
   }
 
@@ -95,10 +152,24 @@ export class TibbleComponent implements OnInit {
       //myReader.result is a String of the uploaded file
       this.tibble = JSON.parse(myReader.result.toString())//.slice(0,20)
       this.tibble.map(this.createVariables)
-
+      this.addStat()
       this.dataSource = new MatTableDataSource(this.tibble);
       console.log(this.tibble)
-      this.dataSource.paginator = this.paginator;
+      this.dataSource.paginator = this.paginator1;
+
+      this.dataSource2 = new MatTableDataSource(this.words_count_data_schema_v);
+      console.log(this.words_count_data_schema_v)
+      this.dataSource2.paginator = this.paginator2;
+//-*-----------------------------------------------------------------------------------------------
+      this.dataSource3 = new MatTableDataSource(this.words_count_ss_v);
+      console.log(this.words_count_ss_v)
+      this.dataSource3.paginator = this.paginator3;
+
+      this.dataSource4 = new MatTableDataSource(this.words_count_hr_v);
+      console.log(this.words_count_hr_v)
+      this.dataSource4.paginator = this.paginator4;
+//----------------------------------------------------------------------------------------
+
       this.changeDetectorRef.markForCheck()
       //fileString = myReader.result would not work,
       //because it is not in the scope of the callback
@@ -107,7 +178,134 @@ export class TibbleComponent implements OnInit {
 myReader.readAsText(file);
 }
 
+
+
+addStat(){
+
+  this.stat_data_schema_v = {}
+
+  //decompose
+  let ds_words = this.tibble.map((x)=>{
+
+    return x.DataSchema_variable.split("_")
+  })
+
+  let ds_words_one_array = ds_words.reduce( ( a, c ) => a.concat( [...c] ), [] )
+
+  let ds_v_unique_set = new Set( ds_words.reduce( ( a, c ) => a.concat( [...c] ), [] ) )
+
+  let ds_v_unique = Array.from(ds_v_unique_set)
+
+  this.words_count_data_schema_v = ds_v_unique.map((x)=>{
+    let results = ds_words_one_array.filter((y:string)=>{
+      return y == x
+    })
+
+    this.stat_data_schema_v[x] = results.length
+    return new wordCount(x,results.length)
+  }).sort(function(a, b){return b.count-a.count})
+//-----------------------
+
+this.stat_study_variable = {}
+
+//decompose
+let dss_words = this.tibble.map((x)=>{
+
+  let array_words = x.Study_variable.split(",").map((w)=>{
+
+    return w.split("_")
+
+  })
+
+  return array_words.reduce( ( a, c ) => a.concat( [...c] ), [] )
+})
+
+let dss_words_one_array = dss_words.reduce( ( a, c ) => a.concat( [...c] ), [] )
+
+let dss_v_unique_set = new Set( dss_words.reduce( ( a, c ) => a.concat( [...c] ), [] ) )
+
+let dss_v_unique = Array.from(dss_v_unique_set)
+
+this.words_count_ss_v = dss_v_unique.map((x)=>{
+  let results = dss_words_one_array.filter((y:string)=>{
+    return y == x
+  })
+
+  this.stat_study_variable[x] = results.length
+  return new wordCount(x,results.length)
+}).sort(function(a, b){return b.count-a.count})
+//-----------------------
+
+this.stat_study_variable_in_HR = {}
+
+//decompose
+
+
+
+let dhr_words = this.tibble.map((x)=>{
+
+  let re = RegExp("\\$[A-Za-z0-9_\.]*","g")
+  let v = x.Harmo_rule.match(re);
+  //console.log("match")
+  //console.log(v)
+  if(v){
+
+  let array_words = v.map((w)=>{
+
+    return w.split("_")
+
+  })
+
+  return array_words.reduce( ( a, c ) => a.concat( [...c] ), [] )
+  }
+  else{
+    return []
+  }
+})
+
+let dhr_words_one_array = dhr_words.reduce( ( a, c ) => a.concat( [...c] ), [] )
+
+let dhr_v_unique_set = new Set( dhr_words.reduce( ( a, c ) => a.concat( [...c] ), [] ) )
+
+let dhr_v_unique = Array.from(dhr_v_unique_set)
+
+this.words_count_hr_v = dhr_v_unique.map((x)=>{
+  let results = dhr_words_one_array.filter((y:string)=>{
+    return y == x
+  })
+
+  this.stat_study_variable_in_HR[x] = results.length
+  return new wordCount(x,results.length)
+}).sort(function(a, b){return b.count-a.count})
+
+/*
+  let sets = this.tibble.map((x)=>{
+
+    x.Study_variable
+
+
+    x.variables.map((x)=>{
+
+    let array_1 = x.decomposition.map((x)=>{return x.symbol})
+
+    return new Set(array_1)
+  })
+}
+  )
+*/
+  //let unique =new Set( array.reduce( ( a, c ) => a.concat( [...c] ), [] ) )
+
+  //unique.map((x)=>{
+
+  //})
+
+
+}
+
+
 createVariables =  (hr:HarmoRule,i:number)=>{
+
+  this.tibble[i].dataSchema_variable_decompo =
 
   this.tibble[i].variables = this.createVariables_helper(hr.Study_variable).sort((a, b) => a.symbol.localeCompare(b.symbol))
   this.tibble[i].harmoV2 = this.createVinHarmo_helper(hr.Harmo_rule)
@@ -158,11 +356,26 @@ createVariables_helper = variables=>{
   })
 }
 
+createStudyVariables_helper = variables=>{
+  //console.log(v)
+  let decomposition
+
+      if(variables.split("_").length <= 1){
+        decomposition = [variables]
+      }
+      else{
+        decomposition = this.decompose(variables)
+      }
+
+     return  new MyVariable(variables,this.symbol_to_color[variables],decomposition)
+
+}
+
 createVinHarmo_helper = (harmo:string)=>{
   let re = RegExp("\\$[A-Za-z0-9_\.]*","g")
   let v = harmo.match(re);
-  console.log("match")
-  console.log(v)
+  //console.log("match")
+  //console.log(v)
   if(v){
     return v.map((e,i2)=>{
       let v_temp = e.trim()

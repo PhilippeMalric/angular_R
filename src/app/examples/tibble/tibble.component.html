@@ -2,11 +2,13 @@
 <div class="form-group">
 <label for="file">Choose File</label>
 <input type="file" (change)="changeListener($event)" #input />
+<h1>DataSchema Variables colored</h1>
+
 <hr>
 <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
-<mat-paginator [pageSizeOptions]="[1,5, 10, 20,100]" [pageSize]="1"></mat-paginator>
+<mat-paginator #matPaginator1 [pageSizeOptions]="[1,5, 10, 20,100]" [pageSize]="1"></mat-paginator>
 <div *ngIf="dataSource">
   <div class="center">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -87,5 +89,109 @@
   </div>
 
 </div>
+<hr>
+<!--words_count_data_schema_v   begin-->
+<h1>DataSchema Variables decomposed</h1>
+<mat-form-field>
+  <input matInput (keyup)="applyFilter2($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<mat-paginator #matPaginator2 [pageSizeOptions]="[1,5, 10, 20,100]" [pageSize]="1"></mat-paginator>
+<div *ngIf="dataSource2">
+<div class="center">
+  <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
 
+    <!-- Position Column -->
+    <ng-container matColumnDef="word">
+      <td mat-cell *matCellDef="let row;let i = index;" [ngStyle]="{'width': '1800px'}">
 
+        <h2>{{row.symbol}}</h2>
+
+      </td>
+
+    </ng-container>
+    <ng-container matColumnDef="count">
+      <td mat-cell *matCellDef="let row;let i = index;" [ngStyle]="{'width': '1800px'}">
+
+        <h2>{{row.count}}</h2>
+
+      </td>
+    </ng-container>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+  </table>
+</div>
+</div>
+<!--words_count_data_schema_v   end-->
+
+<hr>
+<!--words_count_study_v   begin-->
+<h1>Study Variables decomposed</h1>
+<mat-form-field>
+  <input matInput (keyup)="applyFilter3($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<mat-paginator #matPaginator3 [pageSizeOptions]="[1,5, 10, 20,100]" [pageSize]="1"></mat-paginator>
+<div *ngIf="dataSource3">
+<div class="center">
+  <table mat-table [dataSource]="dataSource3" class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="word">
+      <td mat-cell *matCellDef="let row;let i = index;" [ngStyle]="{'width': '1800px'}">
+
+        <h2>{{row.symbol}}</h2>
+
+      </td>
+
+    </ng-container>
+    <ng-container matColumnDef="count">
+      <td mat-cell *matCellDef="let row;let i = index;" [ngStyle]="{'width': '1800px'}">
+
+        <h2>{{row.count}}</h2>
+
+      </td>
+    </ng-container>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+  </table>
+</div>
+</div>
+<!--words_count_study_v   end-->
+
+<hr>
+<!--words_count_study_v_hr   begin-->
+<h1>HarmoRule Variables decomposed</h1>
+<mat-form-field>
+  <input matInput (keyup)="applyFilter4($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<mat-paginator #matPaginator4 [pageSizeOptions]="[1,5, 10, 20,100]" [pageSize]="1"></mat-paginator>
+<div *ngIf="dataSource4">
+<div class="center">
+  <table mat-table [dataSource]="dataSource4" class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="word">
+      <td mat-cell *matCellDef="let row;let i = index;" [ngStyle]="{'width': '1800px'}">
+
+        <h2>{{row.symbol}}</h2>
+
+      </td>
+
+    </ng-container>
+    <ng-container matColumnDef="count">
+      <td mat-cell *matCellDef="let row;let i = index;" [ngStyle]="{'width': '1800px'}">
+
+        <h2>{{row.count}}</h2>
+
+      </td>
+    </ng-container>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+  </table>
+</div>
+</div>
+<!--words_count_study_v_hr   end-->
+
+<hr>
